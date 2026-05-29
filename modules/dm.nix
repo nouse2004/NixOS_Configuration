@@ -16,17 +16,6 @@
 		};
 	};
 
-	# Auto-unlock keyring on greetd login (substack login like Arch)
-	security.pam.services.greetd = {
-		# Substack login PAM so gnome-keyring gets the password for auto-unlock
-		text = ''
-			auth       substack    login
-			account    include     login
-			password   include     login
-			session    include     login
-		'';
-	};
-
 	# Fonts
 		fonts = {
 		packages = with pkgs; [

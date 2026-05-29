@@ -51,12 +51,12 @@
   "cpu": {
     "format": "{icon}",
     "format-icons": [
-      "<span size='14pt'>⠁</span>",
-      "<span size='14pt'>⠉</span>",
-      "<span size='14pt'>⠙</span>",
-      "<span size='14pt'>⠛</span>",
-      "<span size='14pt'>⠟</span>",
-      "<span size='14pt'>⠿</span>"
+      "⠁",
+      "⠉",
+      "⠙",
+      "⠛",
+      "⠟",
+      "⠿"
     ],
     "interval": 1,
     "tooltip": true,
@@ -70,7 +70,7 @@
     "tooltip-format": "<tt><small>{calendar}</small></tt>"
 },
 "mpris": {
-  "format": "<span size='14pt'>󰐎</span>",
+  "format": "󰐎",
   "interval": 1,
   "on-click": "playerctl play-pause",
   "on-click-right": "playerctl next",
@@ -105,18 +105,18 @@
   ]
 },
 "network": {
-  "format-icons": {
-    "wifi": [
-      "<span size='12pt'>󰤯</span>",
-      "<span size='12pt'>󰤟</span>",
-      "<span size='12pt'>󰤢</span>",
-      "<span size='12pt'>󰤥</span>",
-      "<span size='12pt'>󰤨</span>"
-    ],
-    "ethernet": "<span size='12pt'>󰈀</span>",
-    "disabled": "<span size='12pt'>󰤭</span>",
-    "disconnected": "<span size='12pt'>󰤩</span>"
-  },
+    "format-icons": {
+      "wifi": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
+      "ethernet": "󰈀",
+      "disabled": "󰤭",
+      "disconnected": "󰤩"
+    },
   "format-wifi": "{icon}",
   "format-ethernet": "{icon}",
   "format-disconnected": "{icon}",
@@ -130,11 +130,11 @@
 },
 "bluetooth": {
   "interval": 5,
-  "format-on": "<span size='14pt'>󰂯</span>",
-  "format-off": "<span size='14pt'>󰂲</span>",
-  "format-disabled": "<span size='14pt'>󰂲</span>",
-  "format-connected": "<span size='14pt'>󰂱</span>",
-  "format-no-controller": "<span size='14pt'>󰂯</span>",
+  "format-on": "󰂯",
+  "format-off": "󰂲",
+  "format-disabled": "󰂲",
+  "format-connected": "󰂱",
+  "format-no-controller": "󰂯",
   "tooltip": true,
   "tooltip-format": "{device_enumerate}",
   "tooltip-format-enumerate-connected": "{device_address}",
@@ -144,8 +144,8 @@
 },
 "pulseaudio#microphone": {
   "format": "{format_source}",
-  "format-source": "<span size='14pt'>󰍬</span>",
-  "format-source-muted": "<span size='14pt'>󰍭</span>",
+  "format-source": "󰍬",
+  "format-source-muted": "󰍭",
   "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
   "on-click-right": "pavucontrol -t 4",
   "tooltip": false
@@ -158,12 +158,12 @@
 "pulseaudio": {
   "interval": 1,
   "format": "{icon}",
-  "format-icons": [
-    "<span size='14pt'>󰕿</span>",
-    "<span size='14pt'>󰖀</span>",
-    "<span size='14pt'>󰕾</span>"
-  ],
-  "format-muted": "<span size='14pt'>󰝟</span>",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
+    "format-muted": "󰝟",
   "on-click-right": "pavucontrol -t 3",
   "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
   "reverse-scrolling": true,
@@ -201,33 +201,33 @@
     "critical": 10
   },
   "format": "{icon}",
-  "format-icons": [
-    "<span size='14pt'>󰁺</span>",
-    "<span size='14pt'>󰁻</span>",
-    "<span size='14pt'>󰁼</span>",
-    "<span size='14pt'>󰁽</span>",
-    "<span size='14pt'>󰁾</span>",
-    "<span size='14pt'>󰁿</span>",
-    "<span size='14pt'>󰂀</span>",
-    "<span size='14pt'>󰂁</span>",
-    "<span size='14pt'>󰂂</span>",
-    "<span size='14pt'>󰁹</span>"
-  ],
-  "format-charging": "<span size='14pt'>󰂄</span>",
-  "format-plugged": "<span size='14pt'>󰚥</span>",
-  "format-critical": "<span size='14pt'>󰂃</span>",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-charging": "󰂄",
+    "format-plugged": "󰚥",
+    "format-critical": "󰂃",
   "tooltip": true,
   "tooltip-format": "Charge: {capacity}%",
   "tooltip-format-charging": "Charging: {capacity}%"
 },
 "custom/powermenu": {
-  "format": "<span size='13pt'>󰐥</span>",
+  "format": "󰐥",
   "on-click":"$HOME/.config/waybar/scripts/dead-60-sec.sh",
   "on-click-right": "powermenu",
   "tooltip": false
 },
 "custom/separator" : {
-  "format": "<span size='12pt'></span>",
+  "format": "",
   "tooltip": false
 },
 "power-profiles-daemon": {

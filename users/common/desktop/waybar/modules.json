@@ -36,7 +36,7 @@
     ]
   },
   "custom/arch": {
-    "format": "󰣇",
+    "format": "<span size='14pt'>󰣇</span>",
     "tooltip": false,
     "on-click": "kitty"
   },
@@ -44,19 +44,19 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "󰄰",
-      "active": "󰄯"
+      "default": "<span size='14pt'>󰄰</span>",
+      "active": "<span size='14pt'>󰄯</span>"
     }
   },
   "cpu": {
     "format": "{icon}",
     "format-icons": [
-      "⠁",
-      "⠉",
-      "⠙",
-      "⠛",
-      "⠟",
-      "⠿"
+      "<span size='14pt'>⠁</span>",
+      "<span size='14pt'>⠉</span>",
+      "<span size='14pt'>⠙</span>",
+      "<span size='14pt'>⠛</span>",
+      "<span size='14pt'>⠟</span>",
+      "<span size='14pt'>⠿</span>"
     ],
     "interval": 1,
     "tooltip": true,
@@ -70,7 +70,7 @@
     "tooltip-format": "<tt><small>{calendar}</small></tt>"
 },
 "mpris": {
-  "format": "󰐎",
+  "format": "<span size='14pt'>󰐎</span>",
   "interval": 1,
   "on-click": "playerctl play-pause",
   "on-click-right": "playerctl next",
@@ -79,7 +79,7 @@
   "tooltip-format": "{title}"
 },
 "custom/menu": {
-  "format": "<span size='16pt'>󰅃</span>",
+  "format": "<span size='14pt'>󰅃</span>",
   "tooltip": false
 },
 "tray": {
@@ -107,15 +107,15 @@
 "network": {
     "format-icons": {
       "wifi": [
-        "󰤯",
-        "󰤟",
-        "󰤢",
-        "󰤥",
-        "󰤨"
+        "<span size='14pt'>󰤯</span>",
+        "<span size='14pt'>󰤟</span>",
+        "<span size='14pt'>󰤢</span>",
+        "<span size='14pt'>󰤥</span>",
+        "<span size='14pt'>󰤨</span>"
       ],
-      "ethernet": "󰈀",
-      "disabled": "󰤭",
-      "disconnected": "󰤩"
+      "ethernet": "<span size='14pt'>󰈀</span>",
+      "disabled": "<span size='14pt'>󰤭</span>",
+      "disconnected": "<span size='14pt'>󰤩</span>"
     },
   "format-wifi": "{icon}",
   "format-ethernet": "{icon}",
@@ -130,11 +130,11 @@
 },
 "bluetooth": {
   "interval": 5,
-  "format-on": "󰂯",
-  "format-off": "󰂲",
-  "format-disabled": "󰂲",
-  "format-connected": "󰂱",
-  "format-no-controller": "󰂯",
+  "format-on": "<span size='14pt'>󰂯</span>",
+  "format-off": "<span size='14pt'>󰂲</span>",
+  "format-disabled": "<span size='14pt'>󰂲</span>",
+  "format-connected": "<span size='14pt'>󰂱</span>",
+  "format-no-controller": "<span size='14pt'>󰂯</span>",
   "tooltip": true,
   "tooltip-format": "{device_enumerate}",
   "tooltip-format-enumerate-connected": "{device_address}",
@@ -144,8 +144,8 @@
 },
 "pulseaudio#microphone": {
   "format": "{format_source}",
-  "format-source": "󰍬",
-  "format-source-muted": "󰍭",
+  "format-source": "<span size='14pt'>󰍬</span>",
+  "format-source-muted": "<span size='14pt'>󰍭</span>",
   "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
   "on-click-right": "pavucontrol -t 4",
   "tooltip": false
@@ -159,11 +159,11 @@
   "interval": 1,
   "format": "{icon}",
     "format-icons": [
-      "󰕿",
-      "󰖀",
-      "󰕾"
+      "<span size='14pt'>󰕿</span>",
+      "<span size='14pt'>󰖀</span>",
+      "<span size='14pt'>󰕾</span>"
     ],
-    "format-muted": "󰝟",
+    "format-muted": "<span size='14pt'>󰝟</span>",
   "on-click-right": "pavucontrol -t 3",
   "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
   "reverse-scrolling": true,
@@ -182,15 +182,15 @@
 "backlight": {
   "device": "intel_backlight",
   "format": "{icon}",
-  "format-icons": [
-    "󰃚",
-    "󰃛",
-    "󰃜",
-    "󰃝",
-    "󰃞",
-    "󰃟",
-    "󰃠"
-  ],
+    "format-icons": [
+      "<span size='14pt'>󰃚</span>",
+      "<span size='14pt'>󰃛</span>",
+      "<span size='14pt'>󰃜</span>",
+      "<span size='14pt'>󰃝</span>",
+      "<span size='14pt'>󰃞</span>",
+      "<span size='14pt'>󰃟</span>",
+      "<span size='14pt'>󰃠</span>"
+    ],
   "reverse-scrolling": true,
   "smooth-scrolling-threshold": 0.2,
   "tooltip": false
@@ -202,32 +202,32 @@
   },
   "format": "{icon}",
     "format-icons": [
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
+      "<span size='14pt'>󰁺</span>",
+      "<span size='14pt'>󰁻</span>",
+      "<span size='14pt'>󰁼</span>",
+      "<span size='14pt'>󰁽</span>",
+      "<span size='14pt'>󰁾</span>",
+      "<span size='14pt'>󰁿</span>",
+      "<span size='14pt'>󰂀</span>",
+      "<span size='14pt'>󰂁</span>",
+      "<span size='14pt'>󰂂</span>",
+      "<span size='14pt'>󰁹</span>"
     ],
-    "format-charging": "󰂄",
-    "format-plugged": "󰚥",
-    "format-critical": "󰂃",
+    "format-charging": "<span size='14pt'>󰂄</span>",
+    "format-plugged": "<span size='14pt'>󰚥</span>",
+    "format-critical": "<span size='14pt'>󰂃</span>",
   "tooltip": true,
   "tooltip-format": "Charge: {capacity}%",
   "tooltip-format-charging": "Charging: {capacity}%"
 },
 "custom/powermenu": {
-  "format": "󰐥",
+  "format": "<span size='14pt'>󰐥</span>",
   "on-click":"$HOME/.config/waybar/scripts/dead-60-sec.sh",
   "on-click-right": "powermenu",
   "tooltip": false
 },
 "custom/separator" : {
-  "format": "",
+  "format": "<span size='14pt'></span>",
   "tooltip": false
 },
 "power-profiles-daemon": {
@@ -235,17 +235,17 @@
   "tooltip-format": "Power profile: {profile}",
   "tooltip": true,
   "format-icons": {
-    "default": "",
-    "performance": "",
-    "balanced": "",
-    "power-saver": ""
+    "default": "<span size='14pt'></span>",
+    "performance": "<span size='14pt'></span>",
+    "balanced": "<span size='14pt'></span>",
+    "power-saver": "<span size='14pt'></span>"
   },
 },
 "idle_inhibitor": {
 	"format": "{icon}",
 	"format-icons": {
-		"activated": "",
-		"deactivated": ""
+		"activated": "<span size='14pt'></span>",
+		"deactivated": "<span size='14pt'></span>"
 	},
 	"timeout": 30.5
 }

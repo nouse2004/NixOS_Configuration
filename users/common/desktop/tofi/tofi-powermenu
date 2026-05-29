@@ -1,0 +1,15 @@
+width = 100%
+height = 100%
+prompt-text = ""
+border-width = 0
+outline-width = 0
+padding-left = 45%
+padding-top = 20%
+result-spacing = 25
+font = Fanwood Text
+font-size = 36
+hide-input=true
+text-color = {{colors.on_surface.default.hex}}
+background-color = {{colors.surface_container.default.hex}}d9
+selection-color = {{colors.primary.default.hex}}
+require-match=true

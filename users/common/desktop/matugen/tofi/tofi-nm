@@ -1,0 +1,16 @@
+# --- window ---
+anchor = left
+height = 100%
+width = 30%
+outline-width = 0
+border-width =  0
+background-color = {{colors.surface_container.default.hex}}
+
+# --- Font&Input ---
+font = monospace
+font-size = 16
+placeholder-text=""
+hide-input= true
+result-spacing = 5
+selection-color={{colors.primary.default.hex}}
+text-color={{colors.on_surface.default.hex}}

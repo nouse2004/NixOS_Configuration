@@ -1,0 +1,38 @@
+# --- Window ---
+anchor = left
+width = 200
+height = 100%
+padding-top = 6
+padding-left = 8
+padding-right = 0
+background-color = {{colors.surface_container.default.hex}}
+border-width = 4
+border-color = {{colors.surface_container.default.hex}}
+outline-width = 0
+
+# --- Font ---
+font = Fanwood Text Bold
+font-size = 14
+text-color = {{colors.on_surface_variant.default.hex}}
+
+# --- Input ---
+text-cursor = true
+text-cursor-style = bar
+prompt-text = ""
+prompt-background = {{colors.surface_container_highest.default.hex}}
+prompt-background-padding = 6,-1,5,-1
+prompt-background-corner-radius = 8
+placeholder-text = "Run Application"
+placeholder-color = {{colors.on_surface_variant.default.hex}}
+input-color = {{colors.on_surface.default.hex}}
+
+# --- List ---
+selection-color = {{colors.on_primary_container.default.hex}}
+selection-background = {{colors.primary_container.default.hex}}
+selection-background-padding = 4,-1,3,-1
+selection-background-corner-radius = 8
+result-spacing = 15
+
+# --- Others ---
+clip-to-padding = false
+drun-launch = true

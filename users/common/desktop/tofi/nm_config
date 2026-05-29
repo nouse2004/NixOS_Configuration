@@ -1,0 +1,16 @@
+# --- window ---
+anchor = left
+height = 100%
+width = 30%
+outline-width = 0
+border-width =  0
+background-color = #1f1f25
+
+# --- Font&Input ---
+font = monospace
+font-size = 16
+placeholder-text=""
+hide-input= true
+result-spacing = 5
+selection-color=#bcc2ff
+text-color=#e4e1e9

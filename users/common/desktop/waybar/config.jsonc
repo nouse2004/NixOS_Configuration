@@ -1,0 +1,31 @@
+{
+  "reload_style_on_change": true,
+  "toggle": true,
+  "layer": "top",
+  "position": "left",
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 0,
+  "include": ["$HOME/.config/waybar/modules.json"],
+  "modules-left": ["custom/arch", "clock", "cpu"],
+  "modules-center": [
+	  "mpris",
+	  "niri/workspaces",
+	  "idle_inhibitor",
+	  "privacy"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/separator",
+    "network",
+    "bluetooth",
+    "pulseaudio#microphone",
+    "group/audio",
+    "group/brightness",
+    "power-profiles-daemon",
+    "battery",
+    "custom/powermenu",
+  ],
+}

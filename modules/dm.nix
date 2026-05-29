@@ -16,6 +16,9 @@
 		};
 	};
 
+	# Auto-unlock keyring on greetd login
+	security.pam.services.greetd.enableGnomeKeyring = true;
+
 	# Fonts
 		fonts = {
 		packages = with pkgs; [

@@ -23,6 +23,9 @@
 
 	nixpkgs.config.allowUnfree = true;
 
+	# GNOME Keyring (auto-unlock at login)
+	services.gnome.gnome-keyring.enable = true;
+
 	# Time & locale
 	time.timeZone = "Asia/Hong_Kong";
 	i18n.defaultLocale = "en_US.UTF-8";

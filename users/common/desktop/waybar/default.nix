@@ -13,4 +13,8 @@
 		"waybar/style.css".source = lib.mkForce(config.lib.file.mkOutOfStoreSymlink ./style.css); 
 	};
 
+	# Suppress noisy battery/power info logs (Plugged, etc.)
+	systemd.user.services.waybar.Service.ExecStart =
+		lib.mkForce [ "" "${pkgs.waybar}/bin/waybar --log-level error" ];
+
 }

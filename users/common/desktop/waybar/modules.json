@@ -35,8 +35,8 @@
       "pulseaudio/slider"
     ]
   },
-  "custom/arch": {
-    "format": "<span size='14pt'>󰣇</span>",
+  "custom/nixos": {
+    "format": "<span size='14pt'></span>",
     "tooltip": false,
     "on-click": "kitty"
   },

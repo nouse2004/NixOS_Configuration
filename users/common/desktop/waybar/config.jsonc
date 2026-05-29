@@ -9,7 +9,7 @@
   "margin-right": 0,
   "spacing": 0,
   "include": ["$HOME/.config/waybar/modules.json"],
-  "modules-left": ["custom/arch", "clock", "cpu"],
+  "modules-left": ["custom/nixos", "clock", "cpu"],
   "modules-center": [
 	  "mpris",
 	  "niri/workspaces",

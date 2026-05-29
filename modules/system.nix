@@ -1,9 +1,8 @@
 {
-	pkgs,
 	lib,
 	var,
 	...
-} : {
+}: {
 	# Nix
 	nix.settings.trusted-users = [var.username];
 	nix.settings = {
@@ -39,67 +38,6 @@
 #		LC_TIME = "zh_CN.UTF-8";
 #	};
 
-	# Fonts
-	fonts = {
-		packages = with pkgs; [
-			noto-fonts
-			noto-fonts-cjk-sans
-			nerd-fonts.symbols-only
-			noto-fonts-color-emoji
-			nerd-fonts.symbols-only
-			nerd-fonts.jetbrains-mono
-		];
-		enableDefaultPackages = false;
-		fontconfig.defaultFonts = {
-			serif = ["Noto Serif" "Noto Color Emoji"];
-			sansSerif = ["Noto Sans" "Noto Color Emoji"];
-			monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-			emoji = ["Noto Color Emoji"];
-		};
-	};
-
-	# Programs
-	programs = {
-		dconf.enable = true;
-		fish.enable = true;
-	};
-
-	# Services
-	services = {
-		printing.enable = true;
-		dbus.packages = [ pkgs.gcr ];
-		flatpak.enable = true;
-		pipewire = {
-			enable = true;
-			pulse.enable = true;
-		};
-		tlp = {
-			enable = true;
-			pd.enable = true;
-		};
-		upower.enable = true;
-		power-profiles-daemon.enable = false;
-	};
-
 	# Networking
 	networking.firewall.enable = false;
-
-	# Virtualisation
-	virtualisation.podman = {
-		enable = true;
-		dockerCompat = true;
-	};
-
-	# Security
-	security.polkit.enable = true;
-	security.rtkit.enable = true;
-
-	# System packages
-	environment.systemPackages = with pkgs; [
-		vim
-		curl
-		git
-		fastfetch
-		distrobox
-	];
 }

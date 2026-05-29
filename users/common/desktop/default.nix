@@ -10,10 +10,12 @@
 		./fcitx5.nix
 		./clipboard.nix
 		./matugen
+		./fontconfig.nix
 	];
 
 	home.packages = with pkgs; [
 		adwaita-icon-theme
+		libnotify
 	];
 
 	services = {

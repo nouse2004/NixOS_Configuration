@@ -15,4 +15,17 @@
 			};
 		};
 	};
+
+	# Fonts
+		fonts = {
+		packages = with pkgs; [
+			noto-fonts
+			noto-fonts-cjk-sans
+			nerd-fonts.symbols-only
+			noto-fonts-color-emoji
+			nerd-fonts.jetbrains-mono
+			nerd-fonts.noto
+		];
+		enableDefaultPackages = false;
+	};
 }

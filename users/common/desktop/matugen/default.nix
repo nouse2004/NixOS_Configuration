@@ -17,17 +17,17 @@
 			input_path = '${builtins.toString ./templates/tofi-drun}'
 			output_path = '${config.xdg.configHome}/tofi/color/tofi-drun'
 
-			#[templates.tofi-clipboard]
-			#input_path = '~/.config/matugen/templates/tofi/tofi-clipboard'
-			#output_path = '~/.config/tofi/clipboard_config'
+			[templates.tofi-clipboard]
+			input_path = '${builtins.toString ./templates/tofi-clipboard}'
+			output_path = '${config.xdg.configHome}/tofi/color/tofi-clipboard'
 
 			#[templates.tofi-nm]
 			#input_path = '~/.config/matugen/templates/tofi/tofi-nm'
 			#output_path = '~/.config/tofi/nm_config'
 
-			#[templates.tofi-powermenu]
-			#input_path = '~/.config/matugen/templates/tofi/tofi-powermenu'
-			#output_path = '~/.config/tofi/powermenu/powermenu_config'
+			[templates.tofi-powermenu]
+			input_path = '${builtins.toString ./templates/tofi-powermenu}'
+			output_path = '${config.xdg.configHome}/tofi/color/tofi-powermenu'
 
 			#[templates.tofi-run]
 			#input_path = '~/.config/matugen/templates/tofi/tofi-run'

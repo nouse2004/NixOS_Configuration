@@ -223,7 +223,7 @@
 "custom/powermenu": {
   "format": "<span size='13pt'>󰐥</span>",
   "on-click":"$HOME/.config/waybar/scripts/dead-60-sec.sh",
-  "on-click-right": "$HOME/.config/tofi/powermenu/powermenu.sh",
+  "on-click-right": "powermenu",
   "tooltip": false
 },
 "custom/separator" : {

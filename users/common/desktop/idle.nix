@@ -1,9 +1,9 @@
 { config , pkgs , ...} :
  let 
 	dynamicColors = "${config.xdg.configHome}/swaylock/color";
-	
+	backgroundPath = "${config.xdg.userDirs.pictures}/Wallpapers/current";
 	swaylock-launcher = pkgs.writeShellScriptBin "swaylock-launcher" ''
-		exec ${pkgs.swaylock-effects}/bin/swaylock -c ${dynamicColors} "$@"
+		exec ${pkgs.swaylock-effects}/bin/swaylock $(cat "${dynamicColors}") "$@"
 	'';		
 in  {
 	programs = {
@@ -12,7 +12,6 @@ in  {
 			package = pkgs.swaylock-effects;
 			settings = {
 				ignore-empty-password = true;
-				fade-in = "0.2";
 				daemonize = true;
 
 				# 视觉元素
@@ -20,19 +19,33 @@ in  {
 				clock = true;
 				timestr = "%R";
 				datestr = "%a, %h %d";
-				image = "${config.xdg.userDirs.pictures}/Wallpaper/currentwallpaper";
+				image = backgroundPath;
 				indicator-radius = 220;
 				indicator-thickness = 10;
 				indicator-y-position = 250;
-				#swaylock 不支持 fontconfig的 fallback 配置，請選擇nerd 字體
-				#font = "HarmonyOSSans Nerd Font";
+
+				# 固定颜色
+				inside-color = "#00000000";
+				inside-clear-color = "#00000000";
+				inside-caps-lock-color = "#00000000";
+				inside-ver-color = "#00000000";
+				inside-wrong-color = "#00000000";
+				line-uses-inside = true;
+				ring-color = "#00000000";
+				ring-clear-color = "#ffffff00";
+				ring-caps-lock-color = "#ffffff00";
+				ring-ver-color = "#ffffff00";
+				ring-wrong-color = "#ffffff00";
+				separator-color = "#00000000";
+
+			#swaylock 不支持 fontconfig的 fallback 配置，請選擇nerd 字體
+			font = "Noto Sans Nerd Font";
 
 				text-clear = "󰽤";
 				text-caps-lock = "󰪛";
 				text-ver = "󰳌";
 				text-wrong = "";
-
-				# 视觉特效
+				
 				effect-blur = "5x10";
 				effect-vignette = "0.5:0.5";
 			};
@@ -42,18 +55,21 @@ in  {
 	
 	home.packages = [ swaylock-launcher ];
 
-	services = {
-		swayidle = {
-			enable = true;
-			timeouts = [
-				{ timeout = 300; command = "swaylock-launcher"; }
-				{ timeout = 600; command = "niri msg action power-off-monitors"; resumeCommand = "niri msg action power-on-monitors"; }
-				{ timeout = 700; command = "systemctl suspend-then-hibernate"; }
-			];
-			events = {
-				"before-sleep" = "pgrep -x swaylock || swaylock-launcher";
-			};
-			systemdTargets = [ "graphical-session.target" ] ;
+	services.swayidle = let 
+		locker = "${swaylock-launcher}";
+		display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+		systemctl = action: "${pkgs.systemd}/bin/systemctl ${action}";
+	in {
+		enable = true;
+		timeouts = [
+			{ timeout = 300; command = locker; }
+			{ timeout = 600; command = display "off" ; resumeCommand = display "on"; }
+			{ timeout = 700; command = systemctl "suspend-then-hibernate"; }
+		];
+		events = {
+			"before-sleep" = locker;
+			"lock" = (display "off") + ";" + locker;
 		};
+		systemdTargets = [ "graphical-session.target" ] ;
 	};
 }

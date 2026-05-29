@@ -1,2 +1,5 @@
 *.swp
 *.swo
+
+# AI-generated documentation
+AGENTS.md

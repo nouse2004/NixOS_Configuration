@@ -47,7 +47,7 @@ in {
     userDirs = {
       enable = true;
       createDirectories = true;
-      setSessionVariables = true;
+      setSessionVariables = true; # TODO: remove when home.stateVersion >= 26.05 (new default is false)
       extraConfig = {
         SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
       };

@@ -16,7 +16,7 @@ binds {
 
     // Shortcuts
     Mod+E hotkey-overlay-title="Open File Expoler" { spawn "nautilus"; }
-    Mod+Alt+V hotkey-overlay-title="Open Clipboard" { spawn-sh "cliphist list | tofi -c ~/.config/tofi/clipboard_config | cliphist decode | wl-copy"; }
+    Mod+Alt+V hotkey-overlay-title="Open Clipboard" { spawn-sh "clipboard"; }
     Mod+F12 {spawn-sh "systemctl --user restart waybar";}
     Mod+F {spawn "firefox";}
     Mod+N hotkey-overlay-title="Open NetworkManager Dbus" { spawn "networkmanager_dmenu"; }
@@ -25,7 +25,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+W hotkey-overlay-title="Run an Application: tofi" {spawn-sh "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Super+P hotkey-overlay-title="Display Power Menu" { spawn-sh "~/.config/tofi/powermenu/powermenu.sh"; }
+    Super+P hotkey-overlay-title="Display Power Menu" { spawn-sh "powermenu"; }
 
 
     Mod+Up {focus-workspace-up;}

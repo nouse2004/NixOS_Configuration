@@ -11,6 +11,7 @@
 		./clipboard.nix
 		./matugen
 		./fontconfig.nix
+		./script.nix
 	];
 
 	home.packages = with pkgs; [

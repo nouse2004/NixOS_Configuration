@@ -10,7 +10,6 @@
 		./fcitx5.nix
 		./clipboard.nix
 		./matugen
-		./fontconfig.nix
 		./script.nix
 	];
 

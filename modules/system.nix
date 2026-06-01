@@ -38,6 +38,13 @@
 #		LC_TIME = "zh_CN.UTF-8";
 #	};
 
+	# Power management
+	services.logind.settings.Login = {
+		HandlePowerKey = "suspend-then-hibernate";
+		HandleLidSwitch = "suspend-then-hibernate";
+		HandleLidSwitchExternalPower = "suspend";
+	};
+
 	# Networking
 	networking.firewall.enable = false;
 }

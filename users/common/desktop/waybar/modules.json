@@ -36,7 +36,7 @@
     ]
   },
   "custom/nixos": {
-    "format": "<span size='14pt'></span>",
+    "format": " ",
     "tooltip": false,
     "on-click": "kitty"
   },
@@ -124,7 +124,7 @@
   "interval": 5,
   "tooltip-format": "{essid}\t{gwaddr}",
   "on-click": "rfkill toggle wifi",
-  "on-click-right": "nm-connection-editor",
+  "on-click-right": "kitty_popup nmtui",
   "tooltip": true,
   "max-length": 20
 },
@@ -140,7 +140,7 @@
   "tooltip-format-enumerate-connected": "{device_address}",
   "tooltip-format-enumerate-connected-battery": "{device_address} | Battery: {device_battery_percentage}%",
   "on-click": "rfkill toggle bluetooth",
-  "on-click-right": "blueman-manager"
+  "on-click-right": "kitty_popup bluetoothctl"
 },
 "pulseaudio#microphone": {
   "format": "{format_source}",

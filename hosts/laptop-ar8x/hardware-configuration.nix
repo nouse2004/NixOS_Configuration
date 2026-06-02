@@ -14,7 +14,10 @@
 	boot.kernelModules = [ "kvm-amd" ];
 	boot.extraModulePackages = [ ];
 	boot.supportedFilesystems = [ "ntfs" ];
-	boot.kernelParams = [ "zswap.enable=0" ];
+	boot.kernelParams = [
+		"zswap.enable=0"
+		"gpiolib_acpi.ignore_interrupt=AMDI0030:00@2,AMDI0030:00@4"
+	];
 
 	# File systems
 	fileSystems."/" = {

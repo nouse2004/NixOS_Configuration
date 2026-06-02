@@ -20,12 +20,12 @@ let
 	'';
 
 	menuItems = [
-		{ label = "󰐥  Off";      command = "${pkgs.systemd}/bin/systemctl poweroff"; }
+		{ label = "󰐥  Off";      command = "systemctl poweroff"; }
 		{ label = "  Lock";     command = "swaylock-launcher"; }
-		{ label = "󰩈  Exit";     command = "${pkgs.niri}/bin/niri msg action quit"; }
-		{ label = "󰤁  Hiber";    command = "${pkgs.systemd}/bin/systemctl hibernate"; }
-		{ label = "󰤄  Sleep";    command = "${pkgs.systemd}/bin/systemctl suspend"; }
-		{ label = "󰑧  Reboot";   command = "${pkgs.systemd}/bin/systemctl reboot"; }
+		{ label = "󰩈  Exit";     command = "niri msg action quit"; }
+		{ label = "󰤁  Hiber";    command = "systemctl hibernate"; }
+		{ label = "󰤄  Sleep";    command = "systemctl suspend"; }
+		{ label = "󰑧  Reboot";   command = "systemctl reboot"; }
 	];
 
 	menuOptions = lib.concatStringsSep "\n" (map (item: item.label) menuItems);
@@ -43,7 +43,7 @@ in
 	home.packages = [
 		(pkgs.writeShellApplication {
 			name = "powermenu";
-			runtimeInputs = [ pkgs.tofi pkgs.libnotify pkgs.swaylock ];
+			runtimeInputs = with pkgs; [ tofi libnotify systemd niri ];
 			text = ''
 				TOFI_CONF="${config.xdg.configHome}/tofi/powermenu/powermenu_config"
 

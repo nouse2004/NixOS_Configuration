@@ -17,32 +17,46 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+		waybar = {
+			url = "github:Alexays/Waybar";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		nixvim = {
+			url = "github:nix-community/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		zen-browser = {
+			url = "github:0xc000022070/zen-browser-flake";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 	
-	outputs = inputs@{ self , nixpkgs, home-manager, nix-flatpak , ... } : let
+	outputs = inputs@{ self , nixpkgs, home-manager, nix-flatpak, nixvim, waybar , ... } : let
 		var = import ./var.nix;
+		inherit (var) system username;
+
+		extraArgs = { inherit var inputs; };
 	in  {
 		nixosConfigurations = {
-			laptop-ar8x = nixpkgs.lib.nixosSystem {	
-				system = var.system;
-				specialArgs = { inherit var ;};
-				
+			laptop-ar8x = nixpkgs.lib.nixosSystem {
+				inherit system;
+				specialArgs = extraArgs;
+
 				modules = [
 					./hosts/laptop-ar8x
-					./users/${var.username}/nixos.nix
-					
-					nix-flatpak.nixosModules.nix-flatpak					
-	
+					./users/${username}/nixos.nix
+
+					nix-flatpak.nixosModules.nix-flatpak
+
 					home-manager.nixosModules.home-manager
 					{
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						
-						home-manager.extraSpecialArgs = {inherit inputs var ;};		
-						home-manager.users.${var.username} = ./users/${var.username}/home.nix;
+						home-manager.extraSpecialArgs = extraArgs;
+						home-manager.users.${username} = ./users/${username}/home.nix;
 					}
-				 ];
-			};	
+				];
+			};
 		};
 	};
 }

@@ -17,6 +17,7 @@
 				"general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
 				"general.smoothScroll.stopDecelerationWeighting" = 1.0;
 				"mousewheel.default.delta_multiplier_y" = 200;
+				"services.sync.prefs.sync.general.smoothScroll" = true;
 			};
 		};
 	};

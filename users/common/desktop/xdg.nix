@@ -1,5 +1,5 @@
 {config , pkgs , ...}: let
-  browser = ["zen.desktop"];
+  browser = ["firefox.desktop"];
 
   # XDG MIME types
   associations = {

@@ -20,20 +20,6 @@ in
       history = 1;
       max-visible = 20;
       max-history = 100;
-      grouped = 1;
     };
-    extraConfig = ''
-      [app-name=osd-volume]
-      background=#89B4FA
-      text-color=#1E1E2E
-
-      [app-name=osd-brightness]
-      background=#A6E3A1
-      text-color=#1E1E2E
-
-      [app-name=osd-mic]
-      background=#F38BA8
-      text-color=#1E1E2E
-    '';
   };
 }

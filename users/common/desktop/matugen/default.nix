@@ -12,6 +12,7 @@
 			[templates.waybar]
 			input_path = '${builtins.toString ./templates/colors.css}'
 			output_path = '${config.xdg.configHome}/waybar/colors.css'
+			post_hook='systemctl --user restart swaybg &'
 
 			[templates.tofi-drun]
 			input_path = '${builtins.toString ./templates/tofi-drun}'

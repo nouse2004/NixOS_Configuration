@@ -15,8 +15,16 @@
 
 				notify_osd() {
 					local app="$1" icon="$2" value="$3" summary="$4" body="$5"
+					local replace_id
+					case "$app" in
+						osd-volume) replace_id=9991 ;;
+						osd-brightness) replace_id=9992 ;;
+						osd-mic) replace_id=9993 ;;
+						*) replace_id=9999 ;;
+					esac
 					notify-send \
 						-a "$app" \
+						-r "$replace_id" \
 						-h int:value:"$value" \
 						-h int:transient:1 \
 						-i "$icon" \

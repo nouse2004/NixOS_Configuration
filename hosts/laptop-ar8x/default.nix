@@ -41,6 +41,9 @@
 		};
 	};
 
+	# Systemd
+	systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
+
 	# State
 	system.stateVersion = "25.05";
 }

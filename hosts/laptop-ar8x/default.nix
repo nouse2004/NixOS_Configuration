@@ -6,6 +6,7 @@
 		../../modules/dm.nix
 		../../modules/programs.nix
 		./hardware-configuration.nix
+		./nvidia.nix
 	];
 
 	# Boot
@@ -20,6 +21,9 @@
 	# Networking
 	networking.hostName = "laptop-ar8x";
 	networking.networkmanager.enable = true;
+
+	# GPU
+	services.xserver.videoDrivers = [ "amdgpu" ];
 
 	# State
 	system.stateVersion = "25.05";

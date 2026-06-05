@@ -80,14 +80,9 @@
 	# Hardware: CPU / GPU / Bluetooth
 	hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 	hardware.graphics.enable = true;
-	services.xserver.videoDrivers = [ "nvidia" ];
-	hardware.nvidia = {
-		open = true;
-		package = config.boot.kernelPackages.nvidiaPackages.stable;
-		modesetting.enable = true;
-	};
 	hardware.bluetooth = {
 		enable = true;
 		powerOnBoot = false;
 	};
+
 }

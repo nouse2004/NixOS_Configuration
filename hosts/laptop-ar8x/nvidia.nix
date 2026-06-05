@@ -4,10 +4,10 @@
 	specialisation = {
 		nvidia = {
 			configuration = {
-				# Undo default dGPU disable for this specialisation
+				# Undo disable-nvidia.nix for this specialisation
 				boot.blacklistedKernelModules = lib.mkForce [ "nouveau" ];
 				boot.extraModprobeConfig = lib.mkForce "";
-				services.udev.extraRules = lib.mkForce "";
+				services.udev.packages = lib.mkForce [ ];
 
 				services.xserver.videoDrivers = lib.mkForce [ "amdgpu" "nvidia" ];
 

@@ -13,10 +13,17 @@ let
 	'';
 in
 {
-	boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
-	boot.extraModprobeConfig = ''
-		blacklist nouveau
-		options nouveau modeset=0
-	'';
-	services.udev.packages = [ nvidia-udev-rules ];
+	specialisation = {
+		integrated = {
+			configuration = {
+				services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+				boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+				boot.extraModprobeConfig = ''
+					blacklist nouveau
+					options nouveau modeset=0
+				'';
+				services.udev.packages = [ nvidia-udev-rules ];
+			};
+		};
+	};
 }

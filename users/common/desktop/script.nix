@@ -11,36 +11,17 @@
 			name = "osd";
 			runtimeInputs = with pkgs; [ pipewire brightnessctl libnotify ];
 			text = ''
-				set -euo pipefail
-
 				notify_osd() {
 					local app="$1" icon="$2" value="$3" summary="$4" body="$5"
-					local replace_id
-					case "$app" in
-						osd-volume) replace_id=9991 ;;
-						osd-brightness) replace_id=9992 ;;
-						osd-mic) replace_id=9993 ;;
-						*) replace_id=9999 ;;
-					esac
 					notify-send \
 						-a "$app" \
-						-r "$replace_id" \
+						-h string:x-dunst-stack-tag:"$app" \
 						-h int:value:"$value" \
 						-h int:transient:1 \
 						-i "$icon" \
 						-t 1500 \
 						"$summary" \
 						"$body"
-				}
-
-				mk_bar() {
-					local pct=$1 len=10
-					local filled=$((pct * len / 100))
-					local bar=""
-					for i in 1 2 3 4 5 6 7 8 9 10; do
-						[ "$i" -le "$((filled))" ] && bar="''${bar}━" || bar="''${bar}─"
-					done
-					echo "$bar ''${pct}%"
 				}
 
 				case "''${1:-}" in
@@ -69,12 +50,15 @@
 						muted=$(echo "$raw" | grep -c "MUTED" || true)
 
 						if [ "$muted" -gt 0 ]; then
-							notify_osd "osd-volume" "audio-volume-muted" 0 "Volume" "Muted"
+							notify_osd "osd-volume" "audio-volume-muted-symbolic" 0 "Volume" "<span size='14pt'>Muted  󰝟</span>"
 						else
-							if [ "$vol" -gt 66 ]; then icon="audio-volume-high"
-							elif [ "$vol" -gt 33 ]; then icon="audio-volume-medium"
-							else icon="audio-volume-low"; fi
-							notify_osd "osd-volume" "$icon" "$vol" "Volume" "$(mk_bar "$vol")"
+							if [ "$vol" -gt 66 ]; then
+								notify_osd "osd-volume" "audio-volume-high-symbolic" "$vol" "Volume" "<span size='14pt'>''${vol}%  󰕾</span>"
+							elif [ "$vol" -gt 33 ]; then
+								notify_osd "osd-volume" "audio-volume-medium-symbolic" "$vol" "Volume" "<span size='14pt'>''${vol}%  󰖀</span>"
+							else
+								notify_osd "osd-volume" "audio-volume-low-symbolic" "$vol" "Volume" "<span size='14pt'>''${vol}%  󰕿</span>"
+							fi
 						fi
 						;;
 
@@ -95,7 +79,21 @@
 						val=$(brightnessctl --class=backlight get 2>/dev/null)
 						max=$(brightnessctl --class=backlight max 2>/dev/null)
 						pct=$((val * 100 / max))
-						notify_osd "osd-brightness" "display-brightness" "$pct" "Brightness" "$(mk_bar "$pct")"
+						if [ "$pct" -gt 85 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃠</span>"
+						elif [ "$pct" -gt 71 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃟</span>"
+						elif [ "$pct" -gt 57 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃞</span>"
+						elif [ "$pct" -gt 42 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃝</span>"
+						elif [ "$pct" -gt 28 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃜</span>"
+						elif [ "$pct" -gt 14 ]; then
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃛</span>"
+						else
+							notify_osd "osd-brightness" "display-brightness-symbolic" "$pct" "Brightness" "<span size='14pt'>''${pct}%  󰃚</span>"
+						fi
 						;;
 
 					mic)
@@ -113,9 +111,9 @@
 						muted=$(echo "$raw" | grep -c "MUTED" || true)
 
 						if [ "$muted" -gt 0 ]; then
-							notify_osd "osd-mic" "microphone-sensitivity-muted" 0 "Microphone" "Muted"
+							notify_osd "osd-mic" "microphone-sensitivity-muted-symbolic" 0 "Microphone" "<span size='14pt'>Muted  󰍭</span>"
 						else
-							notify_osd "osd-mic" "microphone-sensitivity-high" 100 "Microphone" "Unmuted"
+							notify_osd "osd-mic" "microphone-sensitivity-high-symbolic" 100 "Microphone" "<span size='14pt'>Unmuted  󰍬</span>"
 						fi
 						;;
 

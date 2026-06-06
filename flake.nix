@@ -21,25 +21,21 @@
 			url = "github:Alexays/Waybar";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		nixvim = {
-			url = "github:nix-community/nixvim";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
 	};
 	
-	outputs = inputs@{ self , nixpkgs, home-manager, nix-flatpak, nixvim, waybar , ... } : let
+	outputs = inputs@{ self , nixpkgs, home-manager, nix-flatpak, waybar , ... } : let
 		var = import ./var.nix;
-		inherit (var) system username;
+		inherit (var) system username hostName;
 
 		extraArgs = { inherit var inputs; };
 	in  {
 		nixosConfigurations = {
-			laptop-ar8x = nixpkgs.lib.nixosSystem {
+			${hostName} = nixpkgs.lib.nixosSystem {
 				inherit system;
 				specialArgs = extraArgs;
 
 				modules = [
-					./hosts/laptop-ar8x
+					./hosts/${hostName}
 					./users/${username}/nixos.nix
 
 					nix-flatpak.nixosModules.nix-flatpak

@@ -18,6 +18,9 @@
 		"zswap.enable=0"
 		"gpiolib_acpi.ignore_interrupt=AMDI0030:00@2,AMDI0030:00@4"
 	];
+	boot.extraModprobeConfig = ''
+		options mt7921e disable_aspm=1
+	'';
 
 	# File systems
 	fileSystems."/" = {

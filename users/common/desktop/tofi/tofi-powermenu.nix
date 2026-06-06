@@ -53,7 +53,7 @@ in
 					case "$choice" in
 						${caseBody}
 						*)
-							notify-send "Power Menu" "Error: Invalid selection '$choice'" --icon=dialog-error
+							notify-send -a "powermenu" "Power Menu" "Error: Invalid selection '$choice'" --icon=dialog-error
 							exit 1
 							;;
 					esac

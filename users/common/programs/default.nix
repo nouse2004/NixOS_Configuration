@@ -4,7 +4,6 @@
 		./fun.nix
 		./tool.nix
 		./flatpak.nix
-		./neovim.nix
 		./user.nix
 	];
 }

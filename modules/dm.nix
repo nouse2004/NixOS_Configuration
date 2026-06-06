@@ -21,10 +21,12 @@
 		packages = with pkgs; [
 			noto-fonts
 			noto-fonts-cjk-sans
+			noto-fonts-cjk-serif
 			nerd-fonts.symbols-only
 			noto-fonts-color-emoji
 			nerd-fonts.jetbrains-mono
 			nerd-fonts.noto
+			font-manager
 		];
 		enableDefaultPackages = false;
 	};

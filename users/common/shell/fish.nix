@@ -1,4 +1,7 @@
-{ pkgs , ... } : {
+{ pkgs, var, ... } : let
+	flake = "${var.sourcePath}#${var.hostName}";
+	hmFlake = "${var.sourcePath}#${var.username}";
+in {
 	programs.fish = {
 		enable = true;
 		interactiveShellInit = ''
@@ -6,6 +9,10 @@
 		'';
 		shellAliases = {
 			cat = "bat";
+			nrs = "sudo nixos-rebuild switch --flake ${flake}";
+			nrb = "nixos-rebuild build --flake ${flake}";
+			nfu = "nix flake update ${var.sourcePath}";
+			hms = "home-manager switch --flake ${hmFlake}";
 		};
 		plugins = [
 			{ name = "grc" ; src = pkgs.fishPlugins.grc.src; }

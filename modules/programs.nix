@@ -30,6 +30,9 @@
 		tlp = {
 			enable = true;
 			pd.enable = true;
+			settings = {
+				RUNTIME_PM_DRIVER_DENYLIST = "amdgpu";
+			};
 		};
 		upower.enable = true;
 		power-profiles-daemon.enable = false;

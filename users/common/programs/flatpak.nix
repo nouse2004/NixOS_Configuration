@@ -18,6 +18,7 @@
 			"com.zettlr.Zettlr"	
 			"com.obsproject.Studio"
 			"org.libreoffice.LibreOffice"
+			"org.telegram.desktop"
 		];
 	};
 }

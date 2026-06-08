@@ -38,6 +38,9 @@
 #		LC_TIME = "zh_CN.UTF-8";
 #	};
 
+	# SysRq
+	boot.kernel.sysctl."kernel.sysrq" = 1;
+
 	# Power management
 	services.logind.settings.Login = {
 		HandlePowerKey = "suspend-then-hibernate";

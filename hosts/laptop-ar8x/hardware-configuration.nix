@@ -9,24 +9,31 @@
 	];
 
 	# Boot
-	boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
-	boot.initrd.kernelModules = [ ];
-	boot.kernelModules = [ "kvm-amd" ];
-	boot.extraModulePackages = [ ];
-	boot.supportedFilesystems = [ "ntfs" ];
-	boot.kernelParams = [
-		"zswap.enable=0"
-		"gpiolib_acpi.ignore_interrupt=AMDI0030:00@2,AMDI0030:00@4"
-	];
 	boot.extraModprobeConfig = ''
 		options mt7921e disable_aspm=1
 	'';
+	boot.extraModulePackages = [ ];
+	boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
+	boot.initrd.kernelModules = [ ];
+	boot.kernelModules = [ "kvm-amd" ];
+	boot.kernelParams = [
+		"quiet"
+		"nowatchdog"
+		"zswap.enable=0"
+		"gpiolib_acpi.ignore_interrupt=AMDI0030:00@2,AMDI0030:00@4"
+	];
+	boot.supportedFilesystems = [ "ntfs" ];
 
 	# File systems
 	fileSystems."/" = {
 		device = "/dev/disk/by-uuid/7022b341-1986-4fbd-b78d-779438c48b67";
 		fsType = "btrfs";
 		options = [ "subvol=root" "compress=zstd" ];
+	};
+	fileSystems."/boot" = {
+		device = "/dev/disk/by-uuid/8FE3-6B4D";
+		fsType = "vfat";
+		options = [ "fmask=0077" "dmask=0022" ];
 	};
 	fileSystems."/home" = {
 		device = "/dev/disk/by-uuid/7022b341-1986-4fbd-b78d-779438c48b67";
@@ -38,32 +45,32 @@
 		fsType = "btrfs";
 		options = [ "subvol=nix" "noatime" "compress=zstd" ];
 	};
-	fileSystems."/boot" = {
-		device = "/dev/disk/by-uuid/8FE3-6B4D";
-		fsType = "vfat";
-		options = [ "fmask=0077" "dmask=0022" ];
-	};
 
-	# Swap & OOM
-	zramSwap = {
+	# Hardware
+	hardware.bluetooth = {
 		enable = true;
-		algorithm = "zstd";
-		memoryPercent = 50;
-		priority = 100;
+		powerOnBoot = false;
 	};
-	swapDevices = [
-		{
-			device = "/var/lib/swapfile";
-			size = 16 * 1024;
-		}
-	];
-	systemd.oomd.enable = true;
+	hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+	hardware.graphics.enable = true;
+	hardware.nvidia = {
+		modesetting.enable = true;
+		nvidiaSettings = true;
+		open = true;
+		package = config.boot.kernelPackages.nvidiaPackages.stable;
+		powerManagement.enable = true;
+		powerManagement.finegrained = true;
+		prime = {
+			offload = {
+				enable = true;
+				enableOffloadCmd = true;
+			};
+			amdgpuBusId = "PCIE:6:0:0";
+			nvidiaBusId = "PCIE:1:0:0";
+		};
+	};
 
 	# Networking
-	# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-	# (the default) this is the recommended approach. When using systemd-networkd it's
-	# still possible to use this option, but it's recommended to use it in conjunction
-	# with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 	networking.useDHCP = lib.mkDefault true;
 	# networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
 	# networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
@@ -80,12 +87,22 @@
 	#	"gccarch-znver4"
 	#];
 
-	# Hardware: CPU / GPU / Bluetooth
-	hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-	hardware.graphics.enable = true;
-	hardware.bluetooth = {
-		enable = true;
-		powerOnBoot = false;
-	};
+	# Swap
+	swapDevices = [
+		{
+			device = "/var/lib/swapfile";
+			size = 16 * 1024;
+		}
+	];
 
+	# OOM
+	systemd.oomd.enable = true;
+
+	# Zram
+	zramSwap = {
+		enable = true;
+		algorithm = "zstd";
+		memoryPercent = 50;
+		priority = 100;
+	};
 }

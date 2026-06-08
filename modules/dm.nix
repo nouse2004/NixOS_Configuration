@@ -16,6 +16,8 @@
 		};
 	};
 
+	security.pam.services.greetd.enableGnomeKeyring = true;
+
 	# Fonts
 		fonts = {
 		packages = with pkgs; [

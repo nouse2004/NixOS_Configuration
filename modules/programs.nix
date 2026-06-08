@@ -27,19 +27,15 @@
 			enable = true;
 			pulse.enable = true;
 		};
-		tlp = {
-			enable = true;
-			pd.enable = true;
-			settings = {
-				RUNTIME_PM_DRIVER_DENYLIST = "amdgpu";
-			};
-		};
+		power-profiles-daemon.enable = true;
 		upower.enable = true;
-		power-profiles-daemon.enable = false;
+		tlp.enable = false;
 	};
 
 	security.polkit.enable = true;
 	security.rtkit.enable = true;
+
+	services.gnome.gnome-keyring.enable = true;
 
 	virtualisation.podman = {
 		enable = true;

@@ -177,10 +177,10 @@
   "min": 0,
   "max": 100,
   "orientation": "vertical",
-  "device": "intel_backlight"
+    "device": "amdgpu_bl2"
 },
 "backlight": {
-  "device": "intel_backlight",
+    "device": "amdgpu_bl2",
   "format": "{icon}",
     "format-icons": [
       "<span size='14pt'>󰃚</span>",

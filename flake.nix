@@ -1,17 +1,18 @@
 {
 	description = "NixOS Configuration of Kang";
-	
+
 	nixConfig = {
-		extra-substituter = [
+		extra-substituters = [
 			"https://nix-community.cachix.org"
 		];
-		extra-trusted-public-key = [
-			"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="	
+		extra-trusted-public-keys = [
+			"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCwyvRCYg3Fs="
 		];
 	};
 
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+		nixpkgs-master.url = "github:NixOS/nixpkgs";
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -22,33 +23,32 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
-	
-	outputs = inputs@{ self , nixpkgs, home-manager, nix-flatpak, waybar , ... } : let
+
+	outputs = { self, ... } @ inputs: let
 		var = import ./var.nix;
-		inherit (var) system username hostName;
+		specialArgs = {
+			inherit var inputs;
+			pkgsMaster = inputs.nixpkgs-master.legacyPackages.${var.system};
+		};
+	in {
+		nixosConfigurations.${var.hostName} = inputs.nixpkgs.lib.nixosSystem {
+			system = var.system;
+			inherit specialArgs;
 
-		extraArgs = { inherit var inputs; };
-	in  {
-		nixosConfigurations = {
-			${hostName} = nixpkgs.lib.nixosSystem {
-				inherit system;
-				specialArgs = extraArgs;
+			modules = [
+				./hosts/${var.hostName}
+				./users/${var.username}/nixos.nix
 
-				modules = [
-					./hosts/${hostName}
-					./users/${username}/nixos.nix
+				inputs.nix-flatpak.nixosModules.nix-flatpak
 
-					nix-flatpak.nixosModules.nix-flatpak
-
-					home-manager.nixosModules.home-manager
-					{
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = extraArgs;
-						home-manager.users.${username} = ./users/${username}/home.nix;
-					}
-				];
-			};
+				inputs.home-manager.nixosModules.home-manager
+				{
+					home-manager.useGlobalPkgs = true;
+					home-manager.useUserPackages = true;
+					home-manager.extraSpecialArgs = specialArgs;
+					home-manager.users.${var.username} = ./users/${var.username}/home.nix;
+				}
+			];
 		};
 	};
 }

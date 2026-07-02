@@ -17,7 +17,6 @@
 	boot.initrd.kernelModules = [ ];
 	boot.kernelModules = [ "kvm-amd" ];
 	boot.kernelParams = [
-		"quiet"
 		"nowatchdog"
 		"zswap.enable=0"
 		"gpiolib_acpi.ignore_interrupt=AMDI0030:00@2,AMDI0030:00@4"
@@ -33,7 +32,7 @@
 	fileSystems."/boot" = {
 		device = "/dev/disk/by-uuid/8FE3-6B4D";
 		fsType = "vfat";
-		options = [ "fmask=0077" "dmask=0022" ];
+		options = [ "fmask=0077" "dmask=0077" "noexec" "nosuid" "nodev" ];
 	};
 	fileSystems."/home" = {
 		device = "/dev/disk/by-uuid/7022b341-1986-4fbd-b78d-779438c48b67";
@@ -65,8 +64,8 @@
 				enable = true;
 				enableOffloadCmd = true;
 			};
-			amdgpuBusId = "PCIE:6:0:0";
-			nvidiaBusId = "PCIE:1:0:0";
+			amdgpuBusId = "PCI:6@0:0:0";
+			nvidiaBusId = "PCI:1@0:0:0";
 		};
 	};
 

@@ -29,12 +29,12 @@
 		# ];
 	};
 
+	services.udev.extraRules = ''KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess'';
+
 	programs.firefox = {
 		enable = true;
+		configPath = "${config.xdg.configHome}/mozilla/firefox";
 		profiles.default = {
-			id = 0;
-			name = "default";
-			path = "hrmcqcqm.default";
 			isDefault = true;
 			settings = {
 				"general.smoothScroll.currentVelocityWeighting" = 1;
@@ -50,6 +50,5 @@
 				"services.sync.prefs.sync.general.smoothScroll" = true;
 			};
 		};
-		configPath = "${config.xdg.configHome}/mozilla/firefox";
 	};
 }

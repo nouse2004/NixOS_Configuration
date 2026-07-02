@@ -16,6 +16,10 @@
 		};
 	};
 
+	# Enable gnome-keyring in PAM but DON'T enable
+	# services.gnome.gnome-keyring (which adds gnome-keyring's DBus
+	# service files → DBus activation races with PAM's auto_start
+	# and spawns a second daemon without the login password).
 	security.pam.services.greetd.enableGnomeKeyring = true;
 
 	# Fonts

@@ -3,7 +3,7 @@
 	dynamicColors = "${config.xdg.configHome}/swaylock/color";
 	backgroundPath = "${config.xdg.userDirs.pictures}/Wallpapers/current";
 	swaylock-launcher = pkgs.writeShellScriptBin "swaylock-launcher" ''
-		exec ${pkgs.swaylock-effects}/bin/swaylock $(cat "${dynamicColors}") "$@"
+		exec ${pkgs.swaylock-effects}/bin/swaylock $(${pkgs.coreutils}/bin/cat "${dynamicColors}") "$@"
 	'';		
 in  {
 	programs = {
@@ -38,8 +38,8 @@ in  {
 				ring-wrong-color = "#ffffff00";
 				separator-color = "#00000000";
 
-			#swaylock 不支持 fontconfig的 fallback 配置，請選擇nerd 字體
-			font = "Noto Sans Nerd Font";
+			  #swaylock 不支持 fontconfig的 fallback 配置，請選擇nerd 字體
+			  font = "Noto Sans Nerd Font";
 
 				text-clear = "󰽤";
 				text-caps-lock = "󰪛";
@@ -56,7 +56,7 @@ in  {
 	home.packages = [ swaylock-launcher ];
 
 	services.swayidle = let 
-		locker = "${swaylock-launcher}";
+		locker = "${swaylock-launcher}/bin/swaylock-launcher";
 		display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
 		systemctl = action: "${pkgs.systemd}/bin/systemctl ${action}";
 	in {
@@ -64,7 +64,7 @@ in  {
 		timeouts = [
 			{ timeout = 300; command = locker; }
 			{ timeout = 600; command = display "off" ; resumeCommand = display "on"; }
-			{ timeout = 700; command = systemctl "suspend-then-hibernate"; }
+			{ timeout = 700; command = systemctl "suspend"; }
 		];
 		events = {
 			"before-sleep" = locker;

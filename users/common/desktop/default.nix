@@ -11,10 +11,12 @@
 		./clipboard.nix
 		./matugen
 		./script.nix
+		./battery.nix
 	];
 
 	home.packages = with pkgs; [
 		adwaita-icon-theme
+		file-roller
 		libnotify
 		brightnessctl
 		nautilus

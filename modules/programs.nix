@@ -16,6 +16,7 @@
 		git
 		fastfetch
 		distrobox
+		qemu
 	];
 
 	services = {
@@ -28,17 +29,25 @@
 			pulse.enable = true;
 		};
 		power-profiles-daemon.enable = true;
-		upower.enable = true;
+		upower = {
+			enable = true;
+			percentageLow = 20;
+			percentageCritical = 10;
+			percentageAction = 5;
+		};
 		tlp.enable = false;
 	};
 
 	security.polkit.enable = true;
 	security.rtkit.enable = true;
 
-	services.gnome.gnome-keyring.enable = true;
-
 	virtualisation.podman = {
 		enable = true;
 		dockerCompat = true;
+	};
+
+	virtualisation.libvirtd = {
+		enable = true;
+		qemu.swtpm.enable = true;
 	};
 }

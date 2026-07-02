@@ -26,8 +26,19 @@
 	# Display
 	services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
+	# Power management
+	services.logind.settings.Login = {
+		HandlePowerKey = "suspend-then-hibernate";
+		HandleLidSwitch = "suspend-then-hibernate";
+		HandleLidSwitchExternalPower = "suspend";
+	};
+
 	# Systemd
 	systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
+	systemd.sleep.settings.Sleep = {
+		HibernateDelaySec = "2h";
+		HibernateOnACPower = false;
+	};
 
 	# State
 	system.stateVersion = "25.05";

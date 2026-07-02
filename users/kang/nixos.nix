@@ -5,7 +5,7 @@
 	{
 		isNormalUser = true;
 		shell = pkgs.fish;
-		extraGroups = [ "wheel" "networkmanager" "podman" "plugdev" ];
+		extraGroups = [ "wheel" "networkmanager" "podman" "plugdev" "libvirtd" ];
 		subUidRanges = [{startUid = 100000; count = 65536;}];
 		subGidRanges = [{startGid = 100000; count = 65536;}];
 	};

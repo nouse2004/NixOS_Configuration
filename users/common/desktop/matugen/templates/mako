@@ -1,6 +1,7 @@
 background-color={{colors.surface_container_high.default.hex}}e6
 text-color={{colors.on_surface.default.hex}}
 border-color={{colors.outline_variant.default.hex}}e6
+progress-color={{colors.primary.default.hex}}
 
 [mode=do-not-disturb]
 invisible=1

@@ -28,18 +28,17 @@
 
 	# Power management
 	services.logind.settings.Login = {
-		HandlePowerKey = "suspend-then-hibernate";
-		HandleLidSwitch = "suspend-then-hibernate";
+		HandlePowerKey = "hibernate";
+		HandleLidSwitch = "suspend";
 		HandleLidSwitchExternalPower = "suspend";
 	};
 
 	# Systemd
 	systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
-	systemd.sleep.settings.Sleep = {
-		HibernateDelaySec = "2h";
-		HibernateOnACPower = false;
-	};
 
+	# Udev
+	# services.udev.extraRules = ''KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0657", GROUP="users", TAG+="uaccess'';
+	
 	# State
 	system.stateVersion = "25.05";
 }

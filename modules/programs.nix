@@ -1,4 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, pkgsMaster, lib, ... }: let
+	clashVergeRevPkg = pkgsMaster.clash-verge-rev;
+
+	# 检测到 nixpkgs-master 的 clash-verge-rev 版本超过阈值时提示更新
+	warnClashVergeRevUpdate = threshold: pkg:
+		if lib.versionOlder threshold pkg.version
+		then lib.warn "clash-verge-rev ${pkg.version} > ${threshold}，请更新 modules/programs.nix 中的阈值" pkg
+		else pkg;
+in {
 	programs = {
 		dconf.enable = true;
 		fish.enable = true;
@@ -7,6 +15,7 @@
 			tunMode = true;
 			serviceMode = true;
 			autoStart = true;
+			package = warnClashVergeRevUpdate "2.5.1" clashVergeRevPkg;
 		};
 	};
 

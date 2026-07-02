@@ -8,7 +8,7 @@
 		btop
 		nvtopPackages.full
 		yazi
-		yarn
+		flclash
 	];
 
 	programs = {

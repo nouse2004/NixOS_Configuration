@@ -21,4 +21,7 @@ in {
 			emoji = ["Noto Color Emoji"];
 		};
 	};
+	home.packages = with pkgs; [
+		pavucontrol
+	];
 }

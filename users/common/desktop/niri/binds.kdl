@@ -24,8 +24,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+W hotkey-overlay-title="Run an Application: tofi" {spawn-sh "drun"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock-launcher"; }
-    Super+P hotkey-overlay-title="Display Power Menu" { spawn-sh "powermenu"; }
+    Mod+P hotkey-overlay-title="Display Power Menu" { spawn-sh "powermenu"; }
 
 
     Mod+Up {focus-workspace-up;}
@@ -289,5 +288,16 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    // Mouse Control
+    // need wlrctl wl-kbptr 
+    XF86Tools repeat=true { spawn-sh "wlrctl pointer move -15 0"; }
+    XF86Launch5 repeat=true { spawn-sh "wlrctl pointer move 0 15"; }
+    XF86Launch6 repeat=true { spawn-sh "wlrctl pointer move 0 -15"; }
+    XF86Launch7 repeat=true { spawn-sh "wlrctl pointer move 15 0"; }
+   
+    Mod+Shift+X repeat=false hotkey-overlay-title="启动鼠标键盘控制 (opencv)" { spawn-sh "wl-kbptr -o modes=floating,click -o mode_floating.source=detect"; }
+    Mod+Shift+W repeat=false hotkey-overlay-title="启动鼠标键盘控制 (平铺模式)" { spawn-sh "wl-kbptr -o modes=tile,click"; }
+
 }
 

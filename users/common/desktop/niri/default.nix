@@ -1,6 +1,11 @@
-{config , var ,...} : let 
+{config, pkgs , var , ...} : let 
 	niriConfigSource = "${var.sourcePath}/users/common/desktop/niri";
 in {
+  home.packages = with pkgs; [
+	wl-kbptr
+	wlrctl
+  ];
+
   xdg.configFile = {
     "niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${niriConfigSource}/config.kdl";
     "niri/binds.kdl".source = config.lib.file.mkOutOfStoreSymlink "${niriConfigSource}/binds.kdl";

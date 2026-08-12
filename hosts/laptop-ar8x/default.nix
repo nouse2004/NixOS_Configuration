@@ -37,7 +37,9 @@
 	systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
 
 	# Udev
-	# services.udev.extraRules = ''KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0657", GROUP="users", TAG+="uaccess'';
+	services.udev.extraRules = ''
+		KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0657", GROUP="users", TAG+="uaccess"
+	'';
 	
 	# State
 	system.stateVersion = "25.05";

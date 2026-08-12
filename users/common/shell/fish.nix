@@ -13,7 +13,7 @@ in {
 			nrb = "nixos-rebuild build --flake ${flake}";
 			nfu = "nix flake update ${var.sourcePath}";
 			hms = "home-manager switch --flake ${hmFlake}";
-			ned = "";
+			nixos = "cd ~/Documents/nixos-config/";
 		};
 		plugins = [
 			{ name = "grc" ; src = pkgs.fishPlugins.grc.src; }

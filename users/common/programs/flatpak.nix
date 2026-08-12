@@ -15,10 +15,12 @@
 
 		packages = [
 			"com.qq.QQ"
+			"com.tencent.WeChat"
 			"com.zettlr.Zettlr"	
 			"com.obsproject.Studio"
 			"org.libreoffice.LibreOffice"
 			"org.telegram.desktop"
 		];
+
 	};
 }

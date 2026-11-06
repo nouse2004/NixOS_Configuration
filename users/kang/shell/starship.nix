@@ -1,14 +1,14 @@
-{ config , ... } : {
-	home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
+{ config, ... }: {
+  home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
-	programs.starship = {
-		enable = true;
-		enableFishIntegration = true;
-		settings = {
-			character = {
-				 success_symbol = "[›](bold green)";
-       				 error_symbol = "[›](bold red)";
-			};
-		};
-	};
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      character = {
+        success_symbol = "[›](bold green)";
+        error_symbol = "[›](bold red)";
+      };
+    };
+  };
 }

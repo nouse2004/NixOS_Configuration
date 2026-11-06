@@ -1,12 +1,12 @@
 {
-	# Variables
-	username = "kang";
-	useremail = "none2004a@gmail.com";
-	sourcePath = "/home/kang/Documents/nixos-config";
-	system = "x86_64-linux";
-	hostName = "laptop-ar8x";
+  # Variables
+  username = "kang";
+  useremail = "none2004a@gmail.com";
+  sourcePath = "/home/kang/Documents/nixos-config"; # config realpath
+  system = "x86_64-linux";
+  hostName = "laptop-ar8x";
 
-	game = true;
+  game = true;
 }
 
 # more fun

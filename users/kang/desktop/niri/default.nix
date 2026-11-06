@@ -1,9 +1,16 @@
-{config, pkgs , var , ...} : let
-	niriConfigSource = "${var.sourcePath}/users/${var.username}/desktop/niri";
-in {
+{
+  config,
+  pkgs,
+  var,
+  ...
+}:
+let
+  niriConfigSource = "${var.sourcePath}/users/${var.username}/desktop/niri";
+in
+{
   home.packages = with pkgs; [
-	wl-kbptr
-	wlrctl
+    wl-kbptr
+    wlrctl
   ];
 
   xdg.configFile = {

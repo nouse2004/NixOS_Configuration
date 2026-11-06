@@ -1,24 +1,25 @@
-{ config , pkgs , ...} : {
+{ config, pkgs, ... }: {
 
-	imports = [
-		./niri
-		./xdg.nix
-		./matugen
-		./fcitx5.nix
-	];
+  imports = [
+    ./niri
+    ./xdg.nix
+    ./matugen
+    ./fcitx5.nix
+    ./dms-shell
+  ];
 
-	home.packages = with pkgs; [
-	    papirus-icon-theme
-	];
+  home.packages = with pkgs; [
+    papirus-icon-theme
+  ];
 
-	services = {
-		polkit-gnome.enable = true;
-	};
+  services = {
+    polkit-gnome.enable = true;
+  };
 
-	home.pointerCursor = {
-	  enable = true;
-		name = "Adwaita";
-		package = pkgs.adwaita-icon-theme;
-		size = 24;
-	};
+  home.pointerCursor = {
+    enable = true;
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+  };
 }

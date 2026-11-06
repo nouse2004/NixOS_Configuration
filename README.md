@@ -1,8 +1,8 @@
 # NixOS Configuration for Kang
 
-English | [简体中文](readme.zh-CN.md)
+English | [简体中文](README.zh-CN.md)
 
-Personal NixOS configuration using flakes and Home Manager, based on `nixos-unstable`. The active host is `laptop-ar8x` (`x86_64-linux`) and the user is `kang`.
+Personal NixOS configuration for the **LENOVO LEGION AR8X**, using flakes and Home Manager, based on `nixos-unstable`. The active host is `laptop-ar8x` (`x86_64-linux`) and the user is `kang`.
 
 ## Desktop and applications
 
@@ -31,7 +31,7 @@ secrets/                  SOPS modules and encrypted SSH key
 
 ## Setup
 
-This configuration targets a specific laptop. Review the hardware and account settings before applying it to another machine.
+This configuration targets the LENOVO LEGION AR8X. Review the hardware and account settings before applying it to another machine.
 
 1. Clone the repository and set `username`, `useremail`, `sourcePath`, `system`, `hostName`, and `game` in `var.nix`. `sourcePath` must be the absolute path to this checkout.
 2. Adapt `hosts/laptop-ar8x/` and `users/kang/` to your machine. If you rename the host or user, also update the directory names, host networking settings, and `secrets/<username>.nix`. Review filesystem UUIDs, graphics, swap, and boot settings in the hardware configuration.
@@ -45,7 +45,18 @@ sudo nixos-rebuild switch --flake .#laptop-ar8x
 
 Home Manager is integrated into the NixOS configuration and is applied by `nixos-rebuild`. This flake does not export a standalone `homeConfigurations.kang`; the existing `hms` alias therefore has no matching output.
 
-Niri configuration files are linked directly from `var.sourcePath` using `mkOutOfStoreSymlink`. Keep the checkout at that location. The DMS settings snapshot is stored under `users/kang/desktop/dms-shell/`, but its Home Manager module is not currently imported by `desktop/default.nix`; that snapshot is not automatically linked on activation.
+Niri configuration files and DMS settings are linked directly from `var.sourcePath` using `mkOutOfStoreSymlink`. Keep the checkout at that location. The desktop module imports `dms-shell`, linking `users/kang/desktop/dms-shell/DankMaterialShell/settings.json` to `~/.config/DankMaterialShell/settings.json`. Changes DMS writes through this link also modify the repository file; review its diff before committing.
+
+## DMS settings
+
+The tracked settings use `configVersion = 18` and configure:
+
+- A dynamic theme, blur, Papirus Light/Dark icons, Noto Sans, and JetBrainsMono Nerd Font.
+- A bar with the launcher, clock, weather, and music on the left; workspaces in the center; and the system tray, memory usage, control center, and notifications on the right.
+- Locking at startup and before suspend, automatic battery power saving, and separate idle settings for AC and battery power.
+- A power menu that includes hibernation and switching users, with locking as the default action.
+
+The brightness widget selects `ddc:i2c-9`. Adjust that device in DMS when using a different display setup. The greeter PAM stack is configured in `modules/desktop.nix`.
 
 ## Secrets
 
@@ -53,7 +64,7 @@ Niri configuration files are linked directly from `var.sourcePath` using `mkOutO
 - The Home Manager module reads `~/.config/sops/age/keys.txt` and decrypts `secrets/github_ssh_key.enc` to `~/.ssh/github` with mode `0600`.
 - To use your own key, replace the recipients and re-encrypt your GitHub SSH private key as a SOPS binary file. Keep age private keys and plaintext SSH keys outside this repository.
 - `secrets/default.nix` configures the system age key at `/var/lib/sops/key.txt` and a default secrets file at `${var.sourcePath}/secrets/secrets.yaml`. The YAML file is not included, and no system secrets are currently declared.
-- `users/kang/shell/ssh.nix` is not imported by the shell module. Decrypting the key does not automatically configure an SSH host rule to select it.
+- The shell module imports `users/kang/shell/ssh.nix`. It configures `github.com` with user `git` and selects the SOPS-managed `~/.ssh/github` identity file.
 
 ## Maintenance
 
@@ -74,10 +85,6 @@ Rebuild after updating inputs. NixOS uses `system.stateVersion = "25.05"` and Ho
 
 - `master`: current Niri + DankMaterialShell configuration.
 - `compose`: earlier desktop configuration using components such as Waybar, tofi, mako, swaylock-effects, and swayidle.
-
-## Known issue
-
-Clash Verge Rev can encounter a kernel communication error and freeze its GUI depending on startup timing.
 
 ## Reference
 

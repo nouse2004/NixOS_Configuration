@@ -5,6 +5,8 @@
 	sourcePath = "/home/kang/Documents/nixos-config";
 	system = "x86_64-linux";
 	hostName = "laptop-ar8x";
+
+	game = true;
 }
 
 # more fun

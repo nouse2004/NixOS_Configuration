@@ -51,7 +51,10 @@
 		powerOnBoot = false;
 	};
 	hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-	hardware.graphics.enable = true;
+	hardware.graphics = {
+		enable = true;
+		enable32Bit = true;
+	};
 	hardware.nvidia = {
 		modesetting.enable = true;
 		nvidiaSettings = true;
@@ -100,8 +103,9 @@
 	# Zram
 	zramSwap = {
 		enable = true;
-		algorithm = "zstd";
+		algorithm = "lz4";
 		memoryPercent = 50;
 		priority = 100;
 	};
+
 }

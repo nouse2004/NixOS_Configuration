@@ -1,3 +1,0 @@
-text-color = {{colors.on_surface.default.hex}}
-background-color = {{colors.surface_container.default.hex}}d9
-selection-color = {{colors.primary.default.hex}}

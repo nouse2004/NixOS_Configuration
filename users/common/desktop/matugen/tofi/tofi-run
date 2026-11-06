@@ -1,6 +1,0 @@
-background-color = {{colors.surface_container.default.hex}}
-text-color = {{colors.on_surface_variant.default.hex}}
-prompt-color = {{colors.on_surface.default.hex}}
-input-color = {{colors.on_surface.default.hex}}
-selection-color = {{colors.primary.default.hex}}
-

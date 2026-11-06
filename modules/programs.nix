@@ -1,21 +1,20 @@
-{ pkgs, pkgsMaster, lib, ... }: let
-	clashVergeRevPkg = pkgsMaster.clash-verge-rev;
+{ pkgs, pkgsMaster, lib, inputs , ... }:
+# 	clashVergeRevPkg = pkgsMaster.clash-verge-rev;
 
-	# 检测到 nixpkgs-master 的 clash-verge-rev 版本超过阈值时提示更新
-	warnClashVergeRevUpdate = threshold: pkg:
-		if lib.versionOlder threshold pkg.version
-		then lib.warn "clash-verge-rev ${pkg.version} > ${threshold}，请更新 modules/programs.nix 中的阈值" pkg
-		else pkg;
-in {
+# 	warnClashVergeRevUpdate = threshold: pkg:
+# 		if lib.versionOlder threshold pkg.version
+# 		then lib.warn "clash-verge-rev ${pkg.version} > ${threshold}，请更新 modules/programs.nix 中的阈值" pkg
+# 		else pkg;
+# in
+{
 	programs = {
-		dconf.enable = true;
 		fish.enable = true;
 		clash-verge = {
 			enable = true;
-			tunMode = true;
-			serviceMode = true;
 			autoStart = true;
-			package = warnClashVergeRevUpdate "2.5.1" clashVergeRevPkg;
+			package = pkgs.clash-verge-rev;
+			serviceMode = true;
+			tunMode = true;
 		};
 	};
 
@@ -26,12 +25,12 @@ in {
 		fastfetch
 		distrobox
 		qemu
+	#	inputs.nixvim-config.packages.${pkgs.stdenv.hostPlatform.system}.default
 	];
 
 	services = {
 		resolved.enable = true;
 		printing.enable = true;
-		dbus.packages = [ pkgs.gcr ];
 		flatpak.enable = true;
 		pipewire = {
 			enable = true;

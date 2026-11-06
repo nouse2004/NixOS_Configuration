@@ -1,7 +1,0 @@
---bs-hl-color={{colors.tertiary.dark.hex}}1a
---key-hl-color={{colors.tertiary.dark.hex}}1a
---text-color={{colors.primary.dark.hex}}
---text-clear-color={{colors.secondary.dark.hex}}
---text-caps-lock-color={{colors.secondary.dark.hex}}
---text-ver-color={{colors.secondary.dark.hex}}
---text-wrong-color={{colors.error.dark.hex}}

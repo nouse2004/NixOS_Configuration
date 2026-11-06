@@ -1,17 +1,19 @@
-{ config, lib, pkgs ,... }:
-
+{ config, lib, pkgs , var, ... }:
 {
 	imports = [
 		../../modules/system.nix
-		../../modules/dm.nix
+		../../modules/desktop.nix
 		../../modules/programs.nix
 		./hardware-configuration.nix
 		./integrated.nix
-	];
+	] ++ lib.optional ( var.game == true ) ../../modules/games.nix;
 
 	# Boot
 	boot.loader = {
-		systemd-boot.enable = true;
+		systemd-boot={
+			enable = true;
+			configurationLimit = 8;
+		};
 		efi = {
 			efiSysMountPoint = "/boot";
 			canTouchEfiVariables = true;
@@ -36,11 +38,14 @@
 	# Systemd
 	systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
 
-	# Udev
-	services.udev.extraRules = ''
-		KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0657", GROUP="users", TAG+="uaccess"
-	'';
+
+	# SysRq
+	boot.kernel.sysctl."kernel.sysrq" = 1;
+
+	# Networking
+	networking.firewall.enable = false;
 	
+	services.udisks2.enable = true;
 	# State
 	system.stateVersion = "25.05";
 }

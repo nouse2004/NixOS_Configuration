@@ -1,0 +1,10 @@
+keys:
+  - &kang age1aq596vlukuxzqzjp4zsa607gndplm5f7zw6fj90uey9q2ztyas7sd80s7w
+  - &laptop-ar8x age1tv75jzsfg38ccdm3h56cgpucnklsslcq5mhmuduun8k5kglgwvescw4kmx
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|enc)$
+    key_groups:
+      - age:
+          - *kang
+          - *laptop-ar8x
